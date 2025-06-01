@@ -43,7 +43,6 @@ public class Main {
 
         Auto autoOverflow = new Auto();
 
-
         System.out.println("MAX_AUTOS allowed: " + Auto.MAX_AUTOS);
         System.out.println("Final number of Autos: " + Auto.getNumberOfAutos());
     }
