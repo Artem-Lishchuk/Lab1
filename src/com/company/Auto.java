@@ -111,5 +111,18 @@ public class Auto {
                 '}';
     }
 
-    
+    public void refuel(double liters) {
+        if (liters < 0) {
+            System.out.println("Cannot refuel with negative liters.");
+            return;
+        }
+        this.fuelLevel += liters;
+        System.out.println("Refueled " + liters + " liters. Current fuel level: " + this.fuelLevel + " liters.");
+    }
+
+    public void refuel() {
+        double liters = 5.0; // default refuel amount
+        this.fuelLevel += liters;
+        System.out.println("Refueled " + liters + " liters. Current fuel level: " + this.fuelLevel + " liters.");
+    }
 }
