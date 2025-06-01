@@ -9,9 +9,12 @@ public class Auto {
     private int year; // year of manufacture
     private double milleage; // distance traveled by the car
     private double fuelLevel; // current fuel level in liters
+    private boolean isRunning; // indicates if the car is currently running    
+    
     static int numberOfAutos = 0; // unique identifier for each car
 
     final static int MAX_AUTOS = 10; // maximum number of cars allowed
+    final static int fuelEfficiency = 15; // fuel efficiency in km/l
 
     private boolean validation(){
         if (numberOfAutos == MAX_AUTOS) {
@@ -19,6 +22,12 @@ public class Auto {
         }
         return true; // can create more cars
     }
+
+    private boolean isEnoughFuel(double distance) {
+        double fuelNeeded = distance / fuelEfficiency; // assuming 15 km/l fuel efficiency
+        return fuelNeeded <= this.fuelLevel;
+    }
+    
 
     public Auto() {
         if (!validation()) {
@@ -111,8 +120,30 @@ public class Auto {
                 '}';
     }
 
+    public void start() {
+        if (this.isRunning) {
+            System.out.println("The car is already running.");
+            return;
+        }
+        this.isRunning = true;
+        System.out.println("The car has started.");
+    }
+
+    public void stop() {
+        if (!this.isRunning) {
+            System.out.println("The car is already stopped.");
+            return;
+        }
+        this.isRunning = false;
+        System.out.println("The car has stopped.");
+    }
+
     public void refuel(double liters) {
-        if (liters < 0) {
+        if (this.isRunning) {
+            System.out.println("Cannot refuel while the car is running. Please stop the car first.");
+            return;
+        }
+        else if (liters < 0) {
             System.out.println("Cannot refuel with negative liters.");
             return;
         }
@@ -121,36 +152,46 @@ public class Auto {
     }
 
     public void refuel() {
+        if(this.isRunning) {
+            System.out.println("Cannot refuel while the car is running. Please stop the car first.");
+            return;
+        }
         double liters = 5.0; // default refuel amount
         this.fuelLevel += liters;
         System.out.println("Refueled " + liters + " liters. Current fuel level: " + this.fuelLevel + " liters.");
     }
 
     public void drive(double distance) {
-        if (distance < 0) {
+        if (!this.isRunning) {
+            System.out.println("The car is not running. Please start the car first.");
+            return;
+        }
+        else if (distance < 0) {
             System.out.println("Cannot drive negative distance.");
             return;
         }
-        double fuelNeeded = distance / 15.0; // assuming 15 km/l fuel efficiency
-        if (fuelNeeded > this.fuelLevel) {
+        else if (!isEnoughFuel(distance)) {
             System.out.println("Not enough fuel to drive this distance.");
             return;
         }
         this.milleage += distance;
-        this.fuelLevel -= fuelNeeded;
+        this.fuelLevel -= distance/fuelEfficiency;
         System.out.println("Drove " + distance + " km. Current milleage: " + this.milleage + " km, fuel level: " + this.fuelLevel + " liters.");
     }
 
     public void drive() {
+        if (!this.isRunning) {
+            System.out.println("The car is not running. Please start the car first.");
+            return;
+        }
         double distance = 10.0; // default distance to drive
-        double fuelNeeded = distance / 15.0; // assuming 15 km/l fuel efficiency
-        if (fuelNeeded > this.fuelLevel) {
+        if (!isEnoughFuel(distance)) {
             System.out.println("Not enough fuel to drive this distance.");
             return;
         }
         this.milleage += distance;
-        this.fuelLevel -= fuelNeeded;
+        this.fuelLevel -= distance/fuelEfficiency;
         System.out.println("Drove " + distance + " km. Current milleage: " + this.milleage + " km, fuel level: " + this.fuelLevel + " liters.");
     }
-    
+
 }
