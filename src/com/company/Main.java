@@ -7,5 +7,6 @@ public class Main {
     System.out.println(mazda);
     mazda.refuel();
     System.out.println(mazda);
+    mazda.refuel(10);
     }
 }

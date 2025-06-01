@@ -152,4 +152,5 @@ public class Auto {
         this.fuelLevel -= fuelNeeded;
         System.out.println("Drove " + distance + " km. Current milleage: " + this.milleage + " km, fuel level: " + this.fuelLevel + " liters.");
     }
+    
 }
