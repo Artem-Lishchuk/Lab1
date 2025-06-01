@@ -3,7 +3,9 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-    System.out.println("Hello, World!");
+    Auto mazda = new Auto("Mazda", "CX-5", 2020, 15000, 50);
+    System.out.println(mazda);
+    mazda.refuel();
+    System.out.println(mazda);
     }
 }

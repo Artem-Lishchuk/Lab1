@@ -125,4 +125,31 @@ public class Auto {
         this.fuelLevel += liters;
         System.out.println("Refueled " + liters + " liters. Current fuel level: " + this.fuelLevel + " liters.");
     }
+
+    public void drive(double distance) {
+        if (distance < 0) {
+            System.out.println("Cannot drive negative distance.");
+            return;
+        }
+        double fuelNeeded = distance / 15.0; // assuming 15 km/l fuel efficiency
+        if (fuelNeeded > this.fuelLevel) {
+            System.out.println("Not enough fuel to drive this distance.");
+            return;
+        }
+        this.milleage += distance;
+        this.fuelLevel -= fuelNeeded;
+        System.out.println("Drove " + distance + " km. Current milleage: " + this.milleage + " km, fuel level: " + this.fuelLevel + " liters.");
+    }
+
+    public void drive() {
+        double distance = 10.0; // default distance to drive
+        double fuelNeeded = distance / 15.0; // assuming 15 km/l fuel efficiency
+        if (fuelNeeded > this.fuelLevel) {
+            System.out.println("Not enough fuel to drive this distance.");
+            return;
+        }
+        this.milleage += distance;
+        this.fuelLevel -= fuelNeeded;
+        System.out.println("Drove " + distance + " km. Current milleage: " + this.milleage + " km, fuel level: " + this.fuelLevel + " liters.");
+    }
 }
