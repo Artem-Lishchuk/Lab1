@@ -20,6 +20,10 @@ public class Taxi extends Auto {
         taxiNumberCounter++;
     }
 
+    public Taxi(String string, String string2, int i, String string3, int j, int k) {
+        //TODO Auto-generated constructor stub
+    }
+
     public int getTaxiNumberID() {
         return taxiNumberID;
     }

@@ -31,6 +31,10 @@ public class Taksopark {
                 );
     }
 
+    public ArrayList<Taxi> getTaxis() {
+        return taxis;
+    }
+
     public void removeTaxi(int taxiNumberID) {
         taxis.stream()
                 .filter(taxi -> taxi.getTaxiNumberID() == taxiNumberID)
@@ -119,7 +123,8 @@ public class Taksopark {
             @Override
             public String toString() {
                 if (taxi instanceof PremiumTaxi) {
-                    return "Driver: " + driver.toString() + ", Taxi: " + taxi.toString() + ", Type: Premium";
+                    PremiumTaxi premiumTaxi = (PremiumTaxi) taxi;
+                    return "Driver: " + driver.toString() + ", Taxi: " + premiumTaxi.toString() + ", Type: Premium";
                 } else {
                     return "Driver: " + driver.toString() + ", Taxi: " + taxi.toString() + ", Type: Standard";
                 }

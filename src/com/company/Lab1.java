@@ -1,11 +1,8 @@
 package com.company;
 
 public class Lab1 {
-    public Lab1(){
 
-    }
-
-    public void run(){
+    public static void run(){
         Auto auto1 = new Auto();  
         Auto auto2 = new Auto("Toyota", "Corolla");  
         Auto auto3 = new Auto("Honda", "Civic", 2018, 50000, 20);  
